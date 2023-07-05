@@ -1,0 +1,37 @@
+/* .headerdiv {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 40%);
+    text-align: center;
+    display: block;
+    width: 380px;
+    border: 2px solid #243782;
+    border-radius: 8px;
+    height: 372px;
+    box-shadow: rgba(150, 149, 149, 0.4) 28px 23px 9px;
+}
+
+.innerdiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+
+.loginbutton {
+    cursor: pointer;
+    vertical-align: middle;
+    padding: 7px 13px;
+    border-radius: 10px;
+    background-color: #243782;
+    color: white;
+}
+
+.loginbutton:hover {
+    border: 2px solid #243782;
+    background-color: white;
+    color: #585858;
+} */

@@ -1,0 +1,22 @@
+.typing-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80px;
+}
+
+.typing-text {
+  font-style: italic;
+  color: rgb(0, 0, 255);
+  animation: blink 2s infinite;
+}
+
+@keyframes blink {
+  30% { opacity: 0.3; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+.hide {
+  display: none;
+}

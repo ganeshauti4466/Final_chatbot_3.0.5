@@ -1,0 +1,146 @@
+.App {
+  text-align: center;
+  /* position: absolute;
+  top: 1000%;
+  right: 100%;  */
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+
+
+/* .react-chatbot-kit-chat-container {
+  position: relative;
+  width: 290px
+} */
+
+.react-chatbot-kit-chat-bot-avatar-container {
+  background-color: #7d56a5;
+
+}
+
+
+/* marginTop: '10px' , position:'absolute' ,left: '71%' ,top: '87%' */
+
+
+#loginbutton {
+  margin-top: 10px;
+  position: absolute;
+  left: '71%';
+  top: '87%';
+  /* background-color: #04AA6D; */
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+.react-chatbot-kit-chat-container {
+  position: relative;
+  width: 305px;
+  left: 25%;
+}
+
+#chatbot_toggle {
+  position: absolute;
+  right: 0;
+  border: none;
+  height: 48px;
+  width: 48px;
+  background: rebeccapurple;
+  padding: 14px;
+  color: white;
+  cursor: pointer;
+  position: absolute;
+  border-radius: 23px;
+  top: 86%;
+  right: 8%;
+}
+
+.react-chatbot-kit-chat-inner-container {
+  height: 545px;
+  background-color: #fff;
+  border-radius: 3px;
+  border-radius: 5px;
+}
+
+.react-chatbot-kit-chat-message-container {
+  padding: 0 17.5px 10px 17.5px;
+  overflow: scroll;
+  height: 380px;
+}
+
+#chatbot_toggle:hover {
+  background: #7d56a5;
+}
+
+@media only screen and (max-width: 576px) {
+
+
+  .react-chatbot-kit-chat-container {
+    position: relative;
+    width: 263px;
+    left: 7%;
+  }
+
+  /* .react-chatbot-kit-chat-inner-container {
+    height: 425px;
+    background-color: #fff;
+    border-radius: 3px;
+    border-radius: 5px;
+
+  } */
+
+}
+
+@media only screen and (max-width:350px) {
+  .react-chatbot-kit-chat-container {
+    position: relative;
+    width: 223px;
+    left: 2%;
+    overflow: hidden;
+  }
+
+  .react-chatbot-kit-chat-inner-container {
+    height: 425px;
+    background-color: #fff;
+    border-radius: 3px;
+    border-radius: 5px;
+  }
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}

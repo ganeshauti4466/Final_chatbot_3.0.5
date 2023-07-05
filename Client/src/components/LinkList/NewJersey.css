@@ -1,0 +1,68 @@
+.newjerseydelaers {
+    color: black;
+    display: block;
+    background-color: #f1f1f1;
+    font-size: medium;
+    box-shadow: 2px 2px 4px rgba(150, 149, 149, 0.4);
+    padding: 7px;
+    margin-top: 12px;
+    border-radius: 9px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.newyorkdealers {
+    color: black;
+    display: block;
+    background-color: #f1f1f1;
+    font-size: medium;
+    box-shadow: 2px 2px 4px rgba(150, 149, 149, 0.4);
+    padding: 7px;
+    margin-top: 12px;
+    border-radius: 9px;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.newyorkdealerdata {
+    color: darkslategrey;
+    font-size: small;
+    background-color: #f1f1f1;
+    padding: 4px;
+    /* margin: 0px; */
+    /* font-weight: bold; */
+    padding-left: 20px;
+    padding-right: 12px;
+    text-align: left;
+    margin-top: 12px;
+    font-family: cursive;
+    border-radius: 21px;
+    display: block;
+    box-shadow: rgba(150, 149, 149, 0.4) 2px 2px 4px;
+}
+
+.newjerseydealerdata {
+
+    color: darkslategrey;
+    font-size: small;
+    background-color: #f1f1f1;
+    padding: 4px;
+    /* margin: 0px; */
+    /* font-weight: bold; */
+    padding-left: 20px;
+    padding-right: 12px;
+    text-align: left;
+    margin-top: 12px;
+    font-family: cursive;
+    border-radius: 21px;
+    display: block;
+    box-shadow: rgba(150, 149, 149, 0.4) 2px 2px 4px;
+}
+
+.newjerseydealerdata span{
+    font-weight: bold;
+}
+
+.newyorkdealerdata span {
+    font-weight: bold;
+}

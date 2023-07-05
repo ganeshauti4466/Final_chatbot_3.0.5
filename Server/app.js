@@ -8,7 +8,7 @@ app.use(cors({ origin: '*', }));
 // import { request } from "http";
 import { LocalStorage } from 'node-localstorage';
 import * as dotenv from "dotenv";
-import mongoose from 'mongoose';
+// import mongoose from 'mongoose';
 // const { Schema, model } = mongoose;
 import cookieParser from "cookie-parser";
 import session from "express-session";
@@ -20,10 +20,11 @@ const PT = process.env.PORT;
 const orz = process.env.ORZ;
 const api_key = process.env.APIKEY;
 import "./db/conn.js";
-import user from "./model/userSchema.js";
-import Chat from "./model/chatSchema.js";
+import {dbstore} from "./db/dbstore.js";
+// import user from "./model/userSchema.js";
+// import Chat from "./model/chatSchema.js";
 import { checkdata } from "./checkdata.js";
-import "./getFetchdata.js"
+import "./getFetchdata.js";
 //----------------------------
 
 //------OpenAI API configuration---------
@@ -78,10 +79,10 @@ app.post("/", async (req, res) => {
   // const aprep = text3.replaceAll("\"", "");
   // let newStr = aprep.replace(/^./, "");
   // //console.log(newStr);
-  const newStr = chats[0].content;
+  const newStr = chats[chats.length - 1].content;
   const newStr1 = newStr.concat(" ", ".Give Response in less than 50 words.");
   // console.log(newStr1);
-  chats[0].content = newStr1;
+  chats[chats.length - 1].content = newStr1;
 
   //---------------------------------
 
@@ -103,44 +104,11 @@ app.post("/", async (req, res) => {
   });
   //--------------------------------------------
   //console.log(`Session ID : ` + req.sessionID);
-  //---------setting user id and pass-----------
-  // const usd = new chatSchemaJs.user({
-  //     usname: 'Ian Fleming',
-  //     password : 'flem123'
-  // });
+  //---------Conversation DB storage-----------
 
-  // await usd.save().then(() => {
-  //     console.log('user saved successful');
-  // }).catch((err) => console.log(err));
-  //--------------------
-
-
-  //---------getting user id-----------
-  const unameid = await user.exists({ usname: "Ian Fleming" }, { password: 'flem123' });
-  //console.log(unameid);
-  //-----------------------------------
-
-  //----------chat storing to mongodb-----------
-  const data = new Chat({
-    SenderId: unameid,
-    sessionID: req.sessionID,
-    role: chats[0].role,
-    content: chats[0].content
-  });
-
-  const data1 = new Chat({
-    SenderId: unameid,
-    sessionID: data.sessionID,
-    role: result.data.choices[0].message.role,
-    content: result.data.choices[0].message.content
-  });
-
-  await data.save().then(async () => {
-    console.log('saved data successful');
-    await data1.save().then(() => {
-      console.log('saved data 1 successful');
-    }).catch((err) => console.log('Unsaved'));
-  }).catch((err) => console.log('Unsaved'));
+  let n = {sessionID: req.sessionID, chats, result };
+  await dbstore(n);
+  
   //---------------------------------------------
 
   //---------LOCAL storage-----------

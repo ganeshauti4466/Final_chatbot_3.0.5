@@ -89,10 +89,14 @@ app.post("/", async (req, res) => {
   const result = await openai.createChatCompletion({
     model: "gpt-3.5-turbo",
     max_tokens: 500,
+    // temperature: 0,
+    // top_p:0,
+    // frequency_penalty:0,
+    // presence_penalty:0,
     messages: [
       {
         role: "system",
-        content: "You are a AI chatbot which shows relevant details for the Stellantis organization only and strictly without any additional text of any other organization.dont inlcude any starting or ending sentence.",
+        content: "You are a Stellantis AI chatbot which shows relevant details for the Stellantis organization only and strictly without any additional text of any other organization, don't include any starting or ending prices of vehicles and give sequencing if required.",
       },
       ...chats,
     ],
@@ -150,7 +154,7 @@ app.post("/", async (req, res) => {
   });
 });
 
-app.get("/newyork", async(request, response) => {
+app.get("/newyork", async (request, response) => {
 
   const n = "NY"
   let func = await checkdata(n);
@@ -160,7 +164,7 @@ app.get("/newyork", async(request, response) => {
 
 });
 
-app.get("/newjersey", async(request, response) => {
+app.get("/newjersey", async (request, response) => {
 
   const n = "NJ"
   let func = await checkdata(n);

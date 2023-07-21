@@ -1,13 +1,18 @@
+// Required Library Imports
 import express from "express";
 import cors from 'cors';
 const app = express();
 import bodyParser from "body-parser";
 app.use(bodyParser.json({ extended: false }));
 app.use(cors({ origin: '*', }));
+//---------------------------------------------
 
+// Models and Schema Imports
 import user from "../model/userSchema.js";
 import Chat from "../model/chatSchema.js";
+//--------------------------------------------
 
+// Database Chats Storage Function.
 export const dbstore = async (n) => {
     const {sessionID, chats, result } = n;
     //---------setting user id and pass-----------
@@ -49,4 +54,4 @@ export const dbstore = async (n) => {
         }).catch((err) => console.log('Unsaved'));
     }).catch((err) => console.log('Unsaved'));
     //---------------------------------------------
-}
+};

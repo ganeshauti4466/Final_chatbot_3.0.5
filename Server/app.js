@@ -1,3 +1,4 @@
+// Required Library Imports
 import { Configuration, OpenAIApi } from "openai";
 import express from "express";
 import cors from 'cors';
@@ -5,29 +6,28 @@ const app = express();
 import bodyParser from "body-parser";
 app.use(bodyParser.json({ extended: false }));
 app.use(cors({ origin: '*', }));
-// import { request } from "http";
 import { LocalStorage } from 'node-localstorage';
 import * as dotenv from "dotenv";
-// import mongoose from 'mongoose';
-// const { Schema, model } = mongoose;
 import cookieParser from "cookie-parser";
 import session from "express-session";
-// import axios from "axios";
+//---------------------------------------
 
-//------file import-----------
+// File Imports
 dotenv.config({ path: './config.env' });
+import "./db/conn.js";
+import "./getFetchdata.js";
+// Required Function Imports
+import {dbstore} from "./db/dbstore.js";
+import {checkdata} from "./checkdata.js";
+//---------------------------------------
+
+// Environment Variables Import
 const PT = process.env.PORT;
 const orz = process.env.ORZ;
 const api_key = process.env.APIKEY;
-import "./db/conn.js";
-import {dbstore} from "./db/dbstore.js";
-// import user from "./model/userSchema.js";
-// import Chat from "./model/chatSchema.js";
-import { checkdata } from "./checkdata.js";
-import "./getFetchdata.js";
-//----------------------------
+//----------------------------------------
 
-//------OpenAI API configuration---------
+// OpenAI API configuration
 const configuration = new Configuration({
   organization: orz,
   apiKey: api_key,
@@ -35,7 +35,7 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 //---------------------------------------
 
-//---------------SESSION------------------
+// SESSION Creation
 app.use(cookieParser());
 app.use(session({
   secret: '34SDgsdgspxxxxxxxdfsG', // just a long random string
@@ -44,7 +44,6 @@ app.use(session({
 }));
 //-----------------------------------
 
-//------------------------------------
 /*Local Storage declaration*/
 var localStorage = new LocalStorage('./scratch');
 if (!localStorage.getItem("chat")) {
@@ -54,6 +53,7 @@ var chatHistory = JSON.parse(localStorage.getItem("chat"));
 var prevHistory = JSON.parse('[]');
 //-------------------------------------
 
+// CURD Operations
 //-------------------POST METHOD-------------------------//
 app.post("/", async (req, res) => {
   console.log("inside post function");
@@ -144,7 +144,7 @@ app.get("/newjersey", async (request, response) => {
 //---------------------------------------------------------//
 
 app.get('/', (req, res) => {
-  res.send(`Welcome to Server : ${PT}`);
+  res.send(`Currently running on this Server : ${PT}`);
 });
 
 app.listen(PT, () => {

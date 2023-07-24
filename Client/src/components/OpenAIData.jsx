@@ -27,8 +27,8 @@ const OpenAIData = (props) => {
                 console.log(typw.message);
                 break;
             }
-            // console.log(typw.message);
-            // console.log(typw.type);
+            console.log(typw.message);
+            console.log(typw.type);
         }
     }, []);
 

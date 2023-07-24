@@ -3,6 +3,7 @@ import data1 from '../getFetchdata.js';
 export const getServiceHours = async (n) => {
     const apidata = data1;
     let arr = [];
+    
 
     //---------City Comparison--------------------------------
     let loc1 = (n.location || n.city || n.state) ?? 'None'; // if undefined condition

@@ -34,7 +34,7 @@ const OpenAIData = (props) => {
 
 
     //Function to fetch OpenAI data from the Backend
-   
+
     const chat = async (e, message) => {
 
         e.preventDefault();

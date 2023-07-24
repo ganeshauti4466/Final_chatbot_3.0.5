@@ -16,6 +16,7 @@ import session from "express-session";
 dotenv.config({ path: './config.env' });
 import "./db/conn.js";
 import "./getFetchdata.js";
+
 // Required Function Imports
 import {dbstore} from "./db/dbstore.js";
 import {checkdata} from "./checkdata.js";
@@ -50,11 +51,11 @@ if (!localStorage.getItem("chat")) {
   localStorage.setItem("chat", JSON.stringify([]));
 }
 var chatHistory = JSON.parse(localStorage.getItem("chat"));
-var prevHistory = JSON.parse('[]');
+// var prevHistory = JSON.parse('[]');
 //-------------------------------------
 
 // CURD Operations
-//-------------------POST METHOD-------------------------//
+/*-------------------POST METHOD for OpenAI API-------------------------*/
 app.post("/", async (req, res) => {
   console.log("inside post function");
   const { chats } = req.body;
@@ -62,28 +63,13 @@ app.post("/", async (req, res) => {
 
   //---------LOCAL storage-----------
   chatHistory.push(chats[0]);
-  //localStorage.setItem("chat", JSON.stringify(chatHistory));
   //---------------------------------
 
-  //-------Previous History----------
-  // prevHistory.push(chats[0].content);
-  // const n = 3;
-  // let text3 = "";
-  // let text1 = prevHistory.slice(-n);
-  // //console.log(text1);
-  // let len = text1.length;
-  // for (let i = 0; i < len; i++) {
-  //   let text2 = JSON.stringify(text1[i]);
-  //   text3 = text3.concat(".", text2);
-  // }
-  // const aprep = text3.replaceAll("\"", "");
-  // let newStr = aprep.replace(/^./, "");
-  // //console.log(newStr);
+ // Previous chat Edit
   const newStr = chats[chats.length - 1].content;
   const newStr1 = newStr.concat(" ", ".Give Response in less than 50 words.");
   // console.log(newStr1);
   chats[chats.length - 1].content = newStr1;
-
   //---------------------------------
 
   //-----------OpenAI API Integeration----------
@@ -103,12 +89,12 @@ app.post("/", async (req, res) => {
     ],
   });
   //--------------------------------------------
-  //console.log(`Session ID : ` + req.sessionID);
-  //---------Conversation DB storage-----------
 
+  //console.log(`Session ID : ` + req.sessionID);
+
+  //---------Conversation DB storage-----------
   let n = {sessionID: req.sessionID, chats, result };
   await dbstore(n);
-  
   //---------------------------------------------
 
   //---------LOCAL storage-----------
@@ -121,7 +107,91 @@ app.post("/", async (req, res) => {
     output: result.data.choices[0].message,
   });
 });
+/*-----------------------------------------------------*/
 
+/*-------------------POST METHOD for Dealer and OpenAI API-------------------------*/
+app.post("/dealerapi", async (request, response) => {
+  const { chats } = request.body;
+  let result1="";
+
+  chatHistory.push(chats[0]);
+
+  //-----------------------------------
+  const last = chats[chats.length - 1];
+  // var last = chats.slice(-1)[0];
+  const lst = last.content;
+  // let lne = "Classify the intent and entities:\nUser Input:"
+  let lne = "Classify the intent and entities and respond in JSON format only and strictly without any additional text. User Input:"
+  // let text2 = last.content
+  const text3 = lne.concat(" ", last.content);
+  chats[chats.length - 1].content = text3;
+
+  // console.log(chats[chats.length - 1]);
+  //--------------------------------------------------
+  const result = await openai.createChatCompletion({
+    model: "gpt-3.5-turbo",
+    max_tokens: 1000,
+    messages: [
+      {
+        role: "system",
+        content: "You are a Intent and Entities Classification assistant. Classify intent with entities in format:user input query:give some Jeep Wrangler dealer in newyork city:{\"intent\": \"search_dealers\",\"entities\": {\"brand\": \"Jeep\",\"model\": \"Wrangler\",\"location\": \"new york\"}}. sample intents:(OrderFood,BookFlight,search_dealers,GetSalesData,search_dealers_info,dealer_name,DealerEmail,GetDealerEmailAddress,GetDealerTimings,GetDealerHours,DealerHours).sample entities: (\"brand\": \"value\",\"model\":\" value\", \"state\": \"value\",\"city\": \"value\",\"location\": \"value\", \"dealer_name\":\"value\", \"department\":\"sales\",\"services\",\"parts\",\"bodyshop\",\"used\") ",
+      },
+      ...chats,
+    ],
+  });
+  
+  console.log("openAI response 1");
+  console.log(result.data.choices[0].message);
+
+  console.log("Checkdata func");
+  const msg1 = await parseMessage(result.data.choices[0].message.content);
+  console.log("Parsed message ");
+  console.log(msg1);
+  const arrayAsString = msg1.join('\n');
+  //----------------------------------------------------------------
+  // let newStr = last.content;
+  // console.log(lst);
+  const newStr1 = lst.concat(" ", ".Give Response in less than 50 words.");
+  // console.log(newStr1);
+  chats[chats.length - 1].content = newStr1;
+  // console.log(chats[chats.length - 1].content);
+  //----------------------------------------------------------------
+
+  // console.log(arrayAsString);
+  
+  if(arrayAsString === "notfound"){
+    result1 = await openai.createChatCompletion({
+      model: "gpt-3.5-turbo",
+      max_tokens: 500,
+      messages: [
+        {
+          role: "system",
+          content: "You are a AI chatbot which shows relevant details for the Stellantis organization only and strictly without any additional text of another other organization.dont inlcude any starting or ending sentence.",
+        },
+        ...chats,
+      ],
+    });
+    console.log("openAI response  2");
+    console.log(result1.data.choices[0].message); // Output: "apple,banana,orange
+    response.json({
+      output: result.data.choices[0].message,
+      output1: result1.data.choices[0].message,
+    });
+  }else{
+    
+    response.json({
+      output: result.data.choices[0].message,
+      output1: {"role": "assistant", "content": msg1},
+    });
+  }
+  //------------------------------------------------
+
+  localStorage.setItem("chat", JSON.stringify(chatHistory));
+});
+/*------------------------------------------------------*/
+
+
+/* City dealer API fetch */
 app.get("/newyork", async (request, response) => {
 
   const n = "NY"
@@ -150,5 +220,3 @@ app.get('/', (req, res) => {
 app.listen(PT, () => {
   console.log(`listening on port ${PT}`);
 });
-
-

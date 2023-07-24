@@ -1,6 +1,7 @@
 import data1 from '../getFetchdata.js';
 
 // function SearchDealers(n) 
+
 export const SearchDealers = async(n) =>
 {
     const apidata = data1;

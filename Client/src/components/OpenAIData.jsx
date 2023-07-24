@@ -2,6 +2,9 @@
 //******Open AI integration Part***** */
 
 
+//THIS IS THE NEWWAWT DATA TO CHECH IT IS PULLED 
+
+
 import React from 'react'
 import { useState, useEffect } from 'react'
 import UserImg from './chatbotUI/UserImg'

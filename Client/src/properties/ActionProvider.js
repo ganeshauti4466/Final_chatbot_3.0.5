@@ -81,8 +81,8 @@ class ActionProvider {
         this.updateChatbotState(NewJerseymessage);
     }
     handelOpenAIdata = (message) => {
-        console.log(message);
-        <OpenAIData data={message} />
+        // console.log(message.message);
+        <OpenAIData data={message.message} />
         // config={message}
 
         const AIdata = this.createChatBotMessage(

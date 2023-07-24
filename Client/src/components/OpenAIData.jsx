@@ -1,132 +1,42 @@
-// import React, { useEffect, useState } from 'react';
 
-// const OpenAIData = () => {
-//     const [chats, setChats] = useState([]);
-//     // const chats = [{ role: "user", content: "" }];
-//     const message = "explain AI in less then 100 words";
-//     let msgs = chats;
-//     msgs.push({ role: "user", content: message });
-//     setChats(msgs);
-
-//     useEffect(() => {
-//         fetch('http://localhost:8000', {
-//             method: "POST",
-//             headers: {
-//                 "Content-Type": "application/json",
-//             },
-//             body: JSON.stringify({
-//                 chats,
-//             }),
-//         })
-//             .then((response) => response.json())
-//             .then((data) => {
-//                 msgs.push(data.output);
-//                 setChats(msgs)
-//             })
-//             .catch((error) => {
-//                 console.log(error);
-//             });
-//     }, []);
-
-// export default OpenAIData ; 
-
-// fetch('http://localhost:8000/', {
-//     method: "POST",
-//     headers: {
-//         "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify({
-//         msgs,
-//     }),
-// })
-//     .then((response) => response.json())
-//     .then((data) => {
-//         console.log(data.output);
-//         // msgs.push(data.output);
-//         // setChats(msgs)
-//     })
-//     .catch((error) => {
-//         console.log(error);
-//     });
-
-
-//     return (
-//         <div style={{ color: 'black' }}>`this is the messahe I want to see ${setChats}`
-
-//         </div>
-//     )
-// }
-
-// export default OpenAIData
-
-
-
-// *************Used Axios ****************
-
-// import React from 'react'
-// import axios from "axios"
-
-
-// const baseURL = "http://localhost:8000/";
-
-// const OpenAIData = () => {
-//     const chats = [{ role: "user", content: "Exaplin AI in less than 100 words" }];
-
-//     const [post, setPost] = React.useState(null);
-
-//     React.useEffect(() => {
-//         axios.get(`${baseURL}/1`).then((response) => {
-//             setPost(response.data);
-//         });
-//     }, []);
-
-//     function createPost() {
-//         axios
-//             .post(baseURL, {
-//                 title: "Hello World",
-//                 body: JSON.stringify({
-//                     chats,
-//                 })
-//             })
-//             .then((response) => {
-//                 setPost(response.data);
-//             });
-//     }
-//     if (!post) return "No post!"
-
-//     return (
-//         <div>
-//             <h1>{post.title}</h1>
-//             <p>{post.body}</p>
-//             <button onClick={createPost}>Create Post</button>
-//         </div>
-//     )
-// }
-
-// export default OpenAIData
+//******Open AI integration Part***** */
 
 
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import UserImg from './chatbotUI/UserImg'
 import './typing.css'
 
-// import { createChatBotMessage } from 'react-chatbot-kit'
 
+//OpenAI data component
 
 const OpenAIData = (props) => {
 
-
-    // console.log(props.data)
-
-
-    // console.log("OPenAI!!!!")
-    // console.log(props.data)
     const [message, setMessage] = useState("");
     const [chats, setChats] = useState([]);
     const [isTyping, setIsTyping] = useState(false);
 
-    const chat = async (e, /*message*/) => {
+    //Getting the user Input data from the input field
+    useEffect(() => {
+        const array1 = props.state.messages
+
+        for (let index = array1.length - 1; index >= 0; index--) {
+            // console.log(index);
+            const typw = array1[index]
+            if (typw.type === 'user') {
+                console.log(typw.message);
+                break;
+            }
+            // console.log(typw.message);
+            // console.log(typw.type);
+        }
+    }, []);
+
+
+    //Function to fetch OpenAI data from the Backend
+   
+    const chat = async (e, message) => {
+
         e.preventDefault();
 
         if (!message) return;
@@ -172,7 +82,7 @@ const OpenAIData = (props) => {
 
                                     chat.role === 'assistant' ? (
 
-                                        <div style={{ color: '#fff', justifyContent: 'center', alignItems: 'center', backgroundColor: '#243782',padding:'6px' , paddingBottom:'10px' , borderRadius:'5px' , marginTop:'15px' }}>
+                                        <div style={{ color: '#fff', justifyContent: 'center', alignItems: 'center', backgroundColor: '#243782', padding: '6px', paddingBottom: '10px', borderRadius: '5px', marginTop: '15px' }}>
 
 
 
@@ -186,7 +96,7 @@ const OpenAIData = (props) => {
                                     )
                                         :
                                         (
-                                            <div style={{ display: 'flex', alignItems: 'center' , backgroundColor:'rgb(241, 241, 241)', padding:'6px',borderRadius:'5px',marginTop:'15px' }}>
+                                            <div style={{ display: 'flex', alignItems: 'center', backgroundColor: 'rgb(241, 241, 241)', padding: '6px', borderRadius: '5px', marginTop: '15px' }}>
 
                                                 {/* <span style={{ color: '#fff', marginLeft: '7px' }}> : </span> */}
                                                 <span style={{ color: '#585858', marginLeft: '5px' }}>{chat.content}</span>
@@ -231,50 +141,4 @@ const OpenAIData = (props) => {
 }
 
 export default OpenAIData
-
-//*************BBB*****************
-
-// import React, { useState } from 'react';
-// import { Chatbot } from 'react-chatbot-kit';
-
-// const OpenAIData = () => {
-
-//     const [messages, setMessages] = useState([]);
-
-//     const handelNewUserMessage = async (messages) => {
-
-//         const response = await fetch('http://localhost:8080/', {
-//             method: 'POST',
-//             headers: {
-//                 'Content-Type': "application/json",
-//             },
-//             body: JSON.stringify({ messages }),
-//         });
-//         if (response.ok) {
-//             const data = await response.json();
-//             const botMessage = data.response;
-//             console.log(botMessage)
-
-//             setMessages((prevMessages) => [
-//                 ...prevMessages,
-//                 { author: 'bot', message: botMessage },
-//             ]);
-//         }
-//         else {
-//             console.error('Error:', response.status);
-//         }
-//     };
-
-//     return (
-
-
-//         <Chatbot
-//             messages={messages}
-//             onnewUserMessages={handelNewUserMessage} />
-
-//     );
-// };
-
-// export default OpenAIData
-
 

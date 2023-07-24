@@ -1,3 +1,5 @@
+//Featches all the City Location inside the Json data on the forntEnd
+
 import React from 'react'
 import './LearningOptions.css'
 

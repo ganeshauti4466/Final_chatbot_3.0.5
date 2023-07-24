@@ -1,3 +1,7 @@
+//User Profile Avatar fetched from Google Auth 2.0 system 
+//this is the CustomAvatar Component
+
+
 import { useAuth0 } from '@auth0/auth0-react'
 import React from 'react'
 import Avatar from 'react-avatar';

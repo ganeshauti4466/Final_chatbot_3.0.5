@@ -1,3 +1,5 @@
+//The flow of the chatbot is MessageParser--->ActionProvider--->Config.js--->OutputComponent
+
 class MessageParser {
     constructor(actionProvider, state) {
         this.actionProvider = actionProvider;
@@ -6,7 +8,7 @@ class MessageParser {
 
     parse(message) {
 
-        console.log(message);
+        // console.log(message);
 
         const lowerCaseMessage = message.toLowerCase()
 

@@ -1,3 +1,5 @@
+/*******Dealer Card Component to Fetch Json Data*******/
+
 import React from 'react'
 
 const DealerCard = ( props) => {

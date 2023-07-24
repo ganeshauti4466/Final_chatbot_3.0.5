@@ -1,3 +1,6 @@
+
+//Fetching the JSON Data Link all the DATA is stores in data variable
+
 import React, { useEffect, useState } from 'react'
 
 const Fetchjsondata = () => {

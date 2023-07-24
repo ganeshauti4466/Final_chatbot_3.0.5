@@ -1,3 +1,7 @@
+//This is the Stellantis Mission Card Component 
+//All the Information here are static and are only displayed for generalize information
+
+
 import React from 'react'
 import value1 from'../images/1.png'
 import value2 from '../images/2.png'

@@ -1,3 +1,6 @@
+
+/********Traversing the LinkList Items********/
+
 import React from "react";
 
 import "./LinkList.css";

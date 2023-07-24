@@ -1,3 +1,6 @@
+/********Dog Pictures API for Testing Purpose ***********/
+//Only use when to check connection with the API
+
 import React, { useEffect, useState } from 'react';
 
 const DogPicture = () => {

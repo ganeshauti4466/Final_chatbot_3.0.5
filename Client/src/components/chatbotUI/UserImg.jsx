@@ -1,3 +1,5 @@
+//User Profile Images are displayed over here all the info are fetched from Auth 2.0 API
+
 import React from 'react'
 import { useAuth0 } from "@auth0/auth0-react";
 

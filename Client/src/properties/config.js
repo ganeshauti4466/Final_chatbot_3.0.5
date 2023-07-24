@@ -3,7 +3,6 @@ import { createChatBotMessage } from "react-chatbot-kit";
 import LearningOptions from "../components/LearningOptions/LearningOptions";
 import LinkList from "../components/LinkList/LinkList";
 import Profile from "../components/chatbotUI/Profile";
-// import { useAuth0 } from "@auth0/auth0-react";
 import OpenAIData from "../components/OpenAIData";
 import MyCustomAvatar from "../components/chatbotUI/MyCustomAvatar";
 import DogPicture from "../components/DogPicture";
@@ -16,6 +15,7 @@ import NewJersey from "../components/LinkList/NewJersey";
 import Digitalhub from "../components/catalog/Digitalhub";
 import Stellantismiss from "../components/chatbotUI/Stellantismiss";
 import Careeropp from "../components/catalog/Careeropp";
+// import { useAuth0 } from "@auth0/auth0-react";
 // import MyCustomChatContainer from "../components/chatbotUI/MyCustomChatContainer";
 
 const showmethod = () => {

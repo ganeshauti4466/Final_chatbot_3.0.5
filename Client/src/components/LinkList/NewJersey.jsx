@@ -1,6 +1,8 @@
+/********Fetching static data from JSON file**********/
+
 import React from 'react'
 import { useEffect, useState } from 'react'
-// import DealerCard from './DealerCard'
+import DealerCard from './DealerCard'
 import './NewJersey.css'
 
 
@@ -11,6 +13,7 @@ const NewJersey = () => {
         e.preventDefault();
 
         console.log(`${props.dealerName} ${props.phoneNumber} ${props.website} ${props.dealerAddress1} ${props.dealerCity}`);
+        <DealerCard data={props} />
 
         // console.log(props);
         return (
@@ -86,13 +89,12 @@ const NewJersey = () => {
                             <div onClick={(e) => dealerData(e, info)} style={{ color: 'black', textAlign: 'left', marginLeft: '10px' }} key={info.dealerZipCode}>{info.dealerName}</div>
                         </div>
                         // <div className='newjerseydelaers'>
-                        //     <div onClick={<DealerCard data={info} />} style={{ color: 'black', textAlign: 'left', marginLeft: '10px' }} key={info.dealerZipCode}>{info.dealerName}</div>
+                        //     <div onClick={(info) => { <DealerCard data={info} /> }} style={{ color: 'black', textAlign: 'left', marginLeft: '10px' }} key={info.dealerZipCode}>{info.dealerName}</div>
                         // </div>
 
                     )
                 })
             }
-
         </div>
     )
 }

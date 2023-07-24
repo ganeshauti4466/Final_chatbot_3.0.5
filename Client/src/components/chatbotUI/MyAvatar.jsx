@@ -1,3 +1,5 @@
+//This is the Chatbot Profile Component 
+
 import React from 'react'
 
 const MyAvatar = () => {

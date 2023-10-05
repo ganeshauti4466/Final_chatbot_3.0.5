@@ -1,4 +1,4 @@
-//This is the Stellantis Mission Card Component 
+//This is the Mission Card Component 
 //All the Information here are static and are only displayed for generalize information
 
 
@@ -45,16 +45,16 @@ const Stellantismiss = () => {
                 </div>
                 <div   >
                     <div>
-                        <img src={value1} alt='satellantis_values1' style={{height:'100%' ,width:'100%' , marginTop:'12px'}}></img>
+                        <img src={value1} alt='values1' style={{height:'100%' ,width:'100%' , marginTop:'12px'}}></img>
                     </div>
                     <div>
-                        <img src={value2} alt='satellantis_values1' style={{height:'100%' ,width:'100%'}}></img>
+                        <img src={value2} alt='values1' style={{height:'100%' ,width:'100%'}}></img>
                     </div>
                     <div>
-                        <img src={value3} alt='satellantis_values1' style={{height:'100%' ,width:'100%'}}></img>
+                        <img src={value3} alt='values1' style={{height:'100%' ,width:'100%'}}></img>
                     </div>
                     <div>
-                        <img src={value4} alt='satellantis_values1'style={{height:'100%' ,width:'100%'}}></img>
+                        <img src={value4} alt='values1'style={{height:'100%' ,width:'100%'}}></img>
                     </div>
                 </div>
             </div>

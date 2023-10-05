@@ -83,7 +83,7 @@ app.post("/", async (req, res) => {
     messages: [
       {
         role: "system",
-        content: "You are a Stellantis AI chatbot which shows relevant details for the Stellantis organization only and strictly without any additional text of any other organization, don't include any starting or ending prices of vehicles and give sequencing if required.",
+        content: "You are a AI chatbot which shows relevant details for the organization only and strictly without any additional text of any other organization, don't include any starting or ending prices of vehicles and give sequencing if required.",
       },
       ...chats,
     ],
@@ -134,7 +134,7 @@ app.post("/dealerapi", async (request, response) => {
     messages: [
       {
         role: "system",
-        content: "You are a Intent and Entities Classification assistant. Classify intent with entities in format:user input query:give some Jeep Wrangler dealer in newyork city:{\"intent\": \"search_dealers\",\"entities\": {\"brand\": \"Jeep\",\"model\": \"Wrangler\",\"location\": \"new york\"}}. sample intents:(OrderFood,BookFlight,search_dealers,GetSalesData,search_dealers_info,dealer_name,DealerEmail,GetDealerEmailAddress,GetDealerTimings,GetDealerHours,DealerHours).sample entities: (\"brand\": \"value\",\"model\":\" value\", \"state\": \"value\",\"city\": \"value\",\"location\": \"value\", \"dealer_name\":\"value\", \"department\":\"sales\",\"services\",\"parts\",\"bodyshop\",\"used\") ",
+        content: "You are a Intent and Entities Classification assistant. Classify intent with entities in format:user input query:give some dealer in newyork city:{\"intent\": \"search_dealers\",\"entities\": {\"brand\": \"Jeep\",\"model\": \"Wrangler\",\"location\": \"new york\"}}. sample intents:(OrderFood,BookFlight,search_dealers,GetSalesData,search_dealers_info,dealer_name,DealerEmail,GetDealerEmailAddress,GetDealerTimings,GetDealerHours,DealerHours).sample entities: (\"brand\": \"value\",\"model\":\" value\", \"state\": \"value\",\"city\": \"value\",\"location\": \"value\", \"dealer_name\":\"value\", \"department\":\"sales\",\"services\",\"parts\",\"bodyshop\",\"used\") ",
       },
       ...chats,
     ],
@@ -166,7 +166,7 @@ app.post("/dealerapi", async (request, response) => {
       messages: [
         {
           role: "system",
-          content: "You are a AI chatbot which shows relevant details for the Stellantis organization only and strictly without any additional text of another other organization.dont inlcude any starting or ending sentence.",
+          content: "You are a AI chatbot which shows relevant details for the organization only and strictly without any additional text of another other organization.dont inlcude any starting or ending sentence.",
         },
         ...chats,
       ],

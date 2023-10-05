@@ -6,8 +6,8 @@ import { Configuration, OpenAIApi } from "openai";
 const MyCustomeChatMessages = () => {
 
     const configuration = new Configuration({
-        organization: "org-0nmrFWw6wSm6xIJXSbx4FpTw",
-        apiKey: "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",
+        organization: "*",
+        apiKey: "*",
     });
 
     const openai = new OpenAIApi(configuration);
